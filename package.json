@@ -1,0 +1,84 @@
+{
+  "name": "homeassistant-chat",
+  "displayName": "Home Assistant Chat",
+  "description": "Chat with Home Assistant in VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.86.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "enabledApiProposals": [
+    "chatParticipant"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
+  },
+  "bugs": {
+    "url": "https://github.com/connor4312/vscode-homeassistant/issues"
+  },
+  "homepage": "https://github.com/connor4312/vscode-homeassistant",
+  "repository": {
+    "url": "https://github.com/connor4312/vscode-homeassistant",
+    "type": "git"
+  },
+  "author": {
+    "email": "connor@peet.io",
+    "name": "Connor Peet"
+  },
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Home Assistant Chat",
+        "properties": {
+          "homeassistant-chat.url": {
+            "type": "string",
+            "format": "uri",
+            "default": "http://localhost:8123/profile",
+            "description": "The URL of your Home Assistant instance, such as https://homeassistant.local:8123"
+          },
+          "homeassistant-chat.token": {
+            "type": "string",
+            "markdownDescription": "The long-lived access token for your Home Assistant instance. You can create one in your Home Assistant profile at `http://IP_ADDRESS:8123/profile`.",
+            "ignoreSync": true
+          },
+          "homeassistant-chat.language": {
+            "type": "string",
+            "default": "en",
+            "description": "The language in which conversations are sent to Home Assistant"
+          },
+          "homeassistant-chat.verifyCertificate": {
+            "type": "boolean",
+            "default": true,
+            "description": "Whether to verify the SSL certificate of your Home Assistant instance. Set to `false` if you use a self-signed certificate."
+          }
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "cd src && dts dev && dts main",
+    "lint": "eslint src --ext ts",
+    "test": "npm run lint"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/dts": "^0.4.0",
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  }
+}
